@@ -1,2 +1,2 @@
 # cstv-client
-Nestjs Client App
+Nestjs Client App for Cyber Sport TV 
