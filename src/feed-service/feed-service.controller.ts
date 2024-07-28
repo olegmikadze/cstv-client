@@ -3,7 +3,9 @@ import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('feed-service')
 export class FeedServiceController {
-  constructor(@Inject('FEED_SERVICE') private readonly client: ClientProxy) {}
+  constructor(
+    @Inject('FEED_SERVICE') private readonly feedClient: ClientProxy,
+  ) {}
 
   @Get('/')
   async test() {
@@ -13,15 +15,9 @@ export class FeedServiceController {
 
   @Get('/get-incidents')
   async testGetIncidents(): Promise<any> {
-    console.log('test');
+    const res = await this.feedClient.send({ cmd: 'get-incidents' }, {});
+    console.log(res);
 
-    const getIncidents = await this.client.send<number>(
-      { cmd: 'feed/get-incidents' },
-      {},
-    );
-    console.log('test1');
-
-    await getIncidents.subscribe();
-    console.log('test3');
+    // await getIncidents.subscribe();
   }
 }
