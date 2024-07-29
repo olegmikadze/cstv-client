@@ -15,9 +15,6 @@ export class FeedServiceController {
 
   @Get('/get-incidents')
   async testGetIncidents(): Promise<any> {
-    const res = await this.feedClient.send({ cmd: 'get-incidents' }, {});
-    console.log(res);
-
-    // await getIncidents.subscribe();
+    return await this.feedClient.send({ cmd: 'get-incidents' }, {});
   }
 }
